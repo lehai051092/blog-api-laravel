@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\Api\Customer\CustomerController;
+use App\Http\Controllers\Api\v1\Customer\CustomerController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -19,4 +19,6 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::resource('customers', CustomerController::class)->except(['create', 'edit']);
+Route::prefix('v1')->group(function () {
+    Route::resource('customer', CustomerController::class)->except(['create', 'edit']);
+});
