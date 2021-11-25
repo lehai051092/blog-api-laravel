@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
-    @include('partials.meta')
+    @include('partials.main.meta')
     <title>@yield('title')</title>
-    @include('partials.css-theme')
+    @include('partials.main.css-theme')
     @yield('custom-css')
 </head>
     @yield('body')
-    @include('partials.js-theme')
+    @include('partials.main.js-theme')
     @yield('custom-js')
 </html>
