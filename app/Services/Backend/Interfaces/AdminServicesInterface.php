@@ -6,5 +6,7 @@ interface AdminServicesInterface
 {
     public function signIn($request);
 
-    public function signOut();
+    public function store($request);
+
+    public function profile($id);
 }

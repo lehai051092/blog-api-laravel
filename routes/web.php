@@ -20,9 +20,12 @@ Route::prefix('admin')->group(function () {
     })->name('dashboard');
 
     Route::get('signin', function () {
-        return view('pages.login');
+        return view('pages.admin.login');
     });
 
     Route::post('signin', [AdminController::class, 'signIn'])->name('signIn');
     Route::get('signout', [AdminController::class, 'signOut'])->name('signOut');
+    Route::get('register', [AdminController::class, 'register'])->name('register');
+    Route::post('store', [AdminController::class, 'store'])->name('store');
+    Route::get('profile/{id}', [AdminController::class, 'profile'])->name('profile');
 });

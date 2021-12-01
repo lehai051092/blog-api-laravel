@@ -68,3 +68,15 @@
     </div>
     <!-- /.col-md-6 -->
 @endsection
+@section('custom-js')
+    <script>
+        @if(Session::has('message'))
+            toastr.options = {
+                "closeButton" : true,
+                "progressBar" : true
+            }
+            toastr.success("{{ Session::get('message') }}");
+            <?php Session::put('message', null) ?>
+        @endif
+    </script>
+@endsection

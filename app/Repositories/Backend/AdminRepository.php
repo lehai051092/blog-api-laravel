@@ -30,6 +30,24 @@ class AdminRepository implements AdminRepositoryInterface
      */
     public function signIn($email, $password)
     {
-        return $this->admin->where('admin_email', $email)->where('admin_password', $password)->first();
+        return $this->admin->where('admin_email', $email)->where('admin_password', $password)->where('admin_status', 1)->first();
+    }
+
+    /**
+     * @param $options
+     * @return mixed
+     */
+    public function store($options)
+    {
+        return $this->admin->create($options);
+    }
+
+    /**
+     * @param $id
+     * @return mixed
+     */
+    public function findById($id)
+    {
+        return $this->admin->findOrFail($id);
     }
 }

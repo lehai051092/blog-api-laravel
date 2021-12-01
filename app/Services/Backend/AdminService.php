@@ -9,7 +9,6 @@ use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
-use Illuminate\Support\Facades\Session;
 
 class AdminService implements AdminServicesInterface
 {
@@ -34,30 +33,30 @@ class AdminService implements AdminServicesInterface
      */
     public function signIn($request)
     {
-        $admin = $this->adminRepository->signIn($request->email, md5($request->password));
-
-        if (isset($admin)) {
-            Session::put([
-                'admin_id' => $admin->admin_id,
-                'admin_name' => $admin->admin_name,
-                'message' => 'Sign in successfully'
-            ]);
-
-            return redirect()->route('dashboard');
-        }
-
-        Session::put('message', "Re-enter email and password!!! Something went wrong.");
-        return view('pages.login');
+        return $this->adminRepository->signIn($request->email, md5($request->password));
     }
 
     /**
-     * @return RedirectResponse
+     * @param $request
+     * @return mixed
      */
-    public function signOut()
+    public function store($request)
     {
-        Session::put('admin_name', null);
-        Session::put('admin_id', null);
-        Session::put('message', 'Sign out successfully');
-        return redirect()->route('signIn');
+        $options = [
+            'admin_name' => $request->admin_name,
+            'admin_email' => $request->admin_email,
+            'admin_password' => md5($request->admin_password)
+        ];
+
+        return $this->adminRepository->store($options);
+    }
+
+    /**
+     * @param $id
+     * @return mixed
+     */
+    public function profile($id)
+    {
+        return $this->adminRepository->findById($id);
     }
 }
