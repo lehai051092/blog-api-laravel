@@ -16,3 +16,4 @@ yarn-error.log
 /docker
 /public/js
 /public/css
+/public/media
