@@ -14,13 +14,13 @@ class CustomerFactory extends Factory
     public function definition()
     {
         return [
-            'customer_name' => $this->faker->name(),
-            'customer_phone' => $this->faker->phoneNumber(),
-            'customer_dob' => $this->faker->dateTime(),
+            'customer_first_name' => $this->faker->firstName(),
+            'customer_last_name' => $this->faker->lastName(),
             'customer_email' => $this->faker->unique->email(),
             'customer_password' => $this->faker->password(),
+            'customer_dob' => $this->faker->dateTime(),
+            'customer_phone' => $this->faker->phoneNumber(),
             'customer_address' => $this->faker->address(),
-            'customer_city' => $this->faker->city(),
         ];
     }
 }

@@ -28,4 +28,5 @@ Route::prefix('admin')->group(function () {
     Route::get('register', [AdminController::class, 'register'])->name('register');
     Route::post('store', [AdminController::class, 'store'])->name('store');
     Route::get('profile/{id}', [AdminController::class, 'profile'])->name('profile');
+    Route::post('update/{id}', [AdminController::class, 'update'])->name('update');
 });

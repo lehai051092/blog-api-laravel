@@ -14,13 +14,14 @@ class Admin extends Model
     protected $primaryKey = 'admin_id';
 
     protected $fillable = [
-        'admin_name',
+        'admin_first_name',
+        'admin_last_name',
         'admin_email',
         'admin_password',
         'admin_phone',
         'admin_image',
         'admin_status',
-        'admin_rode_id'
+        'admin_role_id'
     ];
 
     protected $hidden = [

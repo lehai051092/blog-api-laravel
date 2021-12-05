@@ -15,13 +15,15 @@ class CreateAdminsTable extends Migration
     {
         Schema::create('admins', function (Blueprint $table) {
             $table->bigIncrements('admin_id');
-            $table->string('admin_name');
+            $table->string('admin_first_name');
+            $table->string('admin_last_name');
             $table->string('admin_email')->unique();
             $table->string('admin_password');
             $table->string('admin_phone')->nullable();
             $table->string('admin_image')->nullable();
             $table->integer('admin_status')->default(1);
-            $table->integer('admin_rode_id')->nullable();
+            $table->unsignedBigInteger('admin_role_id')->nullable();
+            $table->foreign('admin_role_id')->references('role_id')->on('roles')->cascadeOnUpdate()->cascadeOnDelete();
             $table->timestamps();
         });
     }

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Backend;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\LoginRequest;
 use App\Http\Requests\Admin\RegisterForm;
+use App\Http\Requests\Admin\UpdateRequest;
 use App\Services\Backend\Interfaces\AdminServicesInterface;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
@@ -96,18 +97,25 @@ class AdminController extends Controller
      */
     public function profile($id)
     {
-        $admin = $this->adminServices->profile($id);
+        $admin = $this->adminServices->findById($id);
         return view('pages.admin.profile', compact('admin'));
     }
 
-    public function edit($id)
+    /**
+     * @param UpdateRequest $request
+     * @param $id
+     * @return RedirectResponse
+     */
+    public function update(UpdateRequest $request, $id)
     {
-        //
-    }
+        $hasUpdate = $this->adminServices->update($request, $id);
+        if ($hasUpdate) {
+            Session::put('message', 'Update admin successfully');
+        } else {
+            Session::put('error', 'Update admin failed. Something went wrong.');
+        }
 
-    public function update(Request $request, $id)
-    {
-        //
+        return redirect()->route('profile', ['id' => $id]);
     }
 
     public function destroy($id)

@@ -8,5 +8,7 @@ interface AdminServicesInterface
 
     public function store($request);
 
-    public function profile($id);
+    public function findById($id);
+
+    public function update($request, $id);
 }

@@ -25,6 +25,15 @@ class AdminRepository implements AdminRepositoryInterface
 
     /**
      * @param $email
+     * @return mixed
+     */
+    public function isEmail($email)
+    {
+       return $this->admin->where('admin_email', $email)->first();
+    }
+
+    /**
+     * @param $email
      * @param $password
      * @return object
      */
@@ -49,5 +58,15 @@ class AdminRepository implements AdminRepositoryInterface
     public function findById($id)
     {
         return $this->admin->findOrFail($id);
+    }
+
+    /**
+     * @param $options
+     * @param $id
+     * @return mixed
+     */
+    public function update($options, $id)
+    {
+       return $this->findById($id)->update($options);
     }
 }

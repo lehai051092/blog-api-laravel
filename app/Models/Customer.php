@@ -17,15 +17,18 @@ class Customer extends Authenticatable
      * @var string[]
      */
     protected $fillable = [
-        'customer_name',
-        'customer_phone',
-        'customer_dob',
+        'customer_first_name',
+        'customer_last_name',
         'customer_email',
         'customer_password',
+        'customer_dob',
+        'customer_phone',
+        'customer_image',
         'customer_address',
-        'customer_city',
-        'customer_avatar',
-        'customer_type',
+        'customer_district_id',
+        'customer_city_id',
+        'customer_country_id',
+        'customer_role_id',
     ];
 
     /**
