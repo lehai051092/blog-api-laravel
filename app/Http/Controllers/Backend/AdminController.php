@@ -121,5 +121,6 @@ class AdminController extends Controller
     public function destroy($id)
     {
         // test f1
+        // test f2
     }
 }
